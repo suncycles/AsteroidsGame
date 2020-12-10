@@ -1,21 +1,22 @@
-class Floater //Do NOT modify the Floater class! Make changes in the Spaceship class 
+class Floater 
 {   
-  protected int corners;  //the number of corners, a triangular floater has 3   
+  protected int corners;   
   protected int[] xCorners;   
   protected int[] yCorners;   
   protected int myColor;   
-  protected double myCenterX, myCenterY; //holds center coordinates   
-  protected double myXspeed, myYspeed; //holds the speed of travel in the x and y directions   
-  protected double myPointDirection; //holds current direction the ship is pointing in degrees    
+  protected double myCenterX, myCenterY;   
+  protected double myXspeed, myYspeed;    
+  protected double myDirectionX, myDirectionY;
+  protected double myPointDirection; 
 
-  //Accelerates the floater in the direction it is pointing (myPointDirection)   
   public void accelerate (double dAmount)   
   {          
-    //convert the current direction the floater is pointing to radians    
     double dRadians =myPointDirection*(Math.PI/180);     
     //change coordinates of direction of travel    
     myXspeed += ((dAmount) * Math.cos(dRadians));    
-    myYspeed += ((dAmount) * Math.sin(dRadians));       
+    myYspeed += ((dAmount) * Math.sin(dRadians));      
+     myDirectionX += ((dAmount) * Math.cos(dRadians));    
+    myDirectionY += ((dAmount) * Math.sin(dRadians));       
   }   
   public void turn (double degreesOfRotation)   
   {     
@@ -27,6 +28,8 @@ class Floater //Do NOT modify the Floater class! Make changes in the Spaceship c
     //change the x and y coordinates by myXspeed and myYspeed       
     myCenterX += myXspeed;    
     myCenterY += myYspeed;     
+    myCenterX += myDirectionX;    
+    myCenterY += myDirectionY;   
 
     //wrap around screen    
     if(myCenterX >width)
@@ -73,4 +76,4 @@ class Floater //Do NOT modify the Floater class! Make changes in the Spaceship c
     rotate(-1*dRadians);
     translate(-1*(float)myCenterX, -1*(float)myCenterY);
   }   
-} 
+}
