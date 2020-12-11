@@ -5,7 +5,7 @@ Star[] shine = new Star[150];
 boolean wIsPressed = false;
 boolean dIsPressed = false;
 boolean aIsPressed = false;
-boolean qIsPressed = false;
+
 
 
 public void setup() 
@@ -106,7 +106,5 @@ public void keyReleased(){
   if(key == 'a'){
     aIsPressed = false;
   }
-  if(key == 'q'){
-    qIsPressed = false;
-  }
+
 }
