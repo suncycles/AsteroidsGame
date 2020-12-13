@@ -1,22 +1,20 @@
 Spaceship bob;
 ArrayList <Asteroid> rock;
-ArrayList <Bullet> bang;
-Star[] shine = new Star[150];
+ArrayList <Bullet> bullet;
+Star[] star = new Star[150];
 boolean wIsPressed = false;
 boolean dIsPressed = false;
 boolean aIsPressed = false;
-
-
 
 public void setup() 
 {
   background(0);
   size(600,600);
   bob = new Spaceship();
-  for(int i = 0; i < shine.length; i++){
-    shine[i] = new Star();
+  for(int i = 0; i < star.length; i++){
+    star[i] = new Star();
   }
-  bang = new ArrayList <Bullet> ();
+  bullet = new ArrayList <Bullet> ();
   rock = new ArrayList <Asteroid> ();
   for(int i = 0; i < 15; i++){
     rock.add(new Asteroid());
@@ -27,8 +25,8 @@ public void draw()
 {  
   fill(0);
   rect(0,0,600,600);
-  for(int i = 0; i < shine.length; i++){
-      shine[i].show();
+  for(int i = 0; i < star.length; i++){
+      star[i].show();
     }
     for(int i = 0; i < rock.size(); i++){
       rock.get(i).show();
@@ -47,25 +45,17 @@ public void draw()
   if(dIsPressed == true){
     bob.turn(2);
   }
-  if(wIsPressed == true && aIsPressed == true){
-    bob.accelerate(0.05);
-    bob.turn(-3);
-  }
-  if(wIsPressed == true && dIsPressed == true){
-    bob.accelerate(0.05);
-    bob.turn(3);
-  }
-  for(int i = 0; i < bang.size(); i++){
-    bang.get(i).show();
-    bang.get(i).move();
+  for(int i = 0; i < bullet.size(); i++){
+    bullet.get(i).show();
+    bullet.get(i).move();
 
   }
 
   for(int j = 0; j < rock.size(); j++){
-    for(int i = 0; i < bang.size(); i++){
-      if(dist(rock.get(j).getX(), rock.get(j).getY(),bang.get(i).getX(), bang.get(i).getY() ) < 18){
+    for(int i = 0; i < bullet.size(); i++){
+      if(dist(rock.get(j).getX(), rock.get(j).getY(),bullet.get(i).getX(), bullet.get(i).getY() ) < 18){
           rock.remove(j);
-          bang.remove(i);  
+          bullet.remove(i);  
             break;
         }
     }
@@ -90,7 +80,7 @@ public void keyPressed(){
     bob.hyperspace();
   }
   if(key == ' '){
-    bang.add(new Bullet(bob));
+    bullet.add(new Bullet(bob));
   }
 
 
@@ -106,5 +96,4 @@ public void keyReleased(){
   if(key == 'a'){
     aIsPressed = false;
   }
-
 }
